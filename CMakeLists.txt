@@ -3,7 +3,8 @@ project(phantomjs)
 
 set (CMAKE_CXX_STANDARD 11)
 
-find_package(Qt5 COMPONENTS Core Network WebKitWidgets REQUIRED)
+find_package(Qt5 COMPONENTS Core Network Widgets REQUIRED)
+#find_package(Qt5WebKitWidgets REQUIRED)
 find_package(Threads REQUIRED)
 
 message("Using Qt version ${Qt5Core_VERSION}")
@@ -24,6 +25,10 @@ set(THIRDPARTY_SOURCES src/mongoose/mongoose.c src/qcommandline/qcommandline.cpp
 include_directories(src/linenoise/src)
 include_directories(src/mongoose)
 include_directories(src/qcommandline)
+include_directories(/home/ubuntu/webkit-master/include)
+include_directories(/home/ubuntu/webkit-master/include/QtWebKit)
+include_directories(/home/ubuntu/webkit-master/include/QtWebKitWidgets)
+link_directories(/home/ubuntu/webkit-master/lib)
 
 if (WIN32)
   set(EXTRA_LIBS ws2_32)
@@ -33,7 +38,7 @@ else()
 endif()
 
 add_executable(${PROJECT_NAME} src/phantomjs.qrc ${PHANTOMJS_SOURCES} ${THIRDPARTY_SOURCES})
-target_link_libraries(${PROJECT_NAME} ${EXTRA_LIBS} Qt5::Core Qt5::Network Qt5::WebKitWidgets Threads::Threads)
+target_link_libraries(${PROJECT_NAME} ${EXTRA_LIBS} Qt5::Core Qt5::Network Qt5::Widgets Qt5WebKitWidgets Qt5WebKit Threads::Threads)
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 
 add_custom_target(check COMMAND python test/run-tests.py -v)

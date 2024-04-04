@@ -40,6 +40,7 @@
 
 #include <exception>
 #include <stdio.h>
+#include <unistd.h>
 
 static int inner_main(int argc, char** argv)
 {
@@ -90,6 +91,11 @@ static int inner_main(int argc, char** argv)
 
 int main(int argc, char** argv)
 {
+    char* owd_env = getenv("OWD");    
+    if (owd_env) {
+        chdir(owd_env);
+    }
+
     try {
         init_crash_handler();
         return inner_main(argc, argv);

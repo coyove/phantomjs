@@ -75,3 +75,7 @@ CTestTestfile.cmake
 _deps
 *_autogen
 
+2.txt
+*.AppImage
+phantomjs.AppDir/lib/
+phantomjs.AppDir/usr/
