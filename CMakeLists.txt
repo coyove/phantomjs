@@ -4,8 +4,11 @@ project(phantomjs)
 set (CMAKE_CXX_STANDARD 11)
 
 find_package(Qt5 COMPONENTS Core Network Widgets REQUIRED)
-#find_package(Qt5WebKitWidgets REQUIRED)
 find_package(Threads REQUIRED)
+
+if(NOT DEFINED Qt5WebKit_DIR)
+    set(Qt5WebKit_DIR "/home/ubuntu/webkit-master")
+endif()
 
 message("Using Qt version ${Qt5Core_VERSION}")
 if (Qt5Core_VERSION VERSION_LESS 5.5.0)
@@ -25,10 +28,10 @@ set(THIRDPARTY_SOURCES src/mongoose/mongoose.c src/qcommandline/qcommandline.cpp
 include_directories(src/linenoise/src)
 include_directories(src/mongoose)
 include_directories(src/qcommandline)
-include_directories(/home/ubuntu/webkit-master/include)
-include_directories(/home/ubuntu/webkit-master/include/QtWebKit)
-include_directories(/home/ubuntu/webkit-master/include/QtWebKitWidgets)
-link_directories(/home/ubuntu/webkit-master/lib)
+include_directories(${Qt5WebKit_DIR}/include)
+include_directories(${Qt5WebKit_DIR}/include/QtWebKit)
+include_directories(${Qt5WebKit_DIR}/include/QtWebKitWidgets)
+link_directories(${Qt5WebKit_DIR}/lib)
 
 if (WIN32)
   set(EXTRA_LIBS ws2_32)

@@ -1,6 +1,14 @@
 # [PhantomJS](http://phantomjs.org) - Scriptable Headless WebKit
 
-PhantomJS ([phantomjs.org](http://phantomjs.org)) is a headless WebKit scriptable with JavaScript.  The latest [stable release](http://phantomjs.org/release-2.1.html) is version 2.1.
+PhantomJS ([phantomjs.org](http://phantomjs.org)) is a headless WebKit scriptable with JavaScript.
+
+**Important**:
+
+This is a fork of PhantomJS, which embeds a more up-to-date Qt5WebKit from https://github.com/movableink/webkit . It scores ~350 in https://html5test.opensuse.org .
+
+Qt5.14 is needed when buliding Qt5WebKit.
+
+To build phantomjs, run `cmake -DQt5WebKit_DIR=<PATH_TO_QT5WEBKIT_BUILD_DIR> && make`.
 
 **Important**: PhantomJS development is suspended until further notice (see [#15344](https://github.com/ariya/phantomjs/issues/15344) for more details).
 
