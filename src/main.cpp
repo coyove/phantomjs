@@ -91,8 +91,13 @@ static int inner_main(int argc, char** argv)
 
 int main(int argc, char** argv)
 {
-    char* owd_env = getenv("OWD");    
+    const char* owd_env = getenv("OWD");
     if (owd_env) {
+	char cwd[PATH_MAX];
+	getcwd(cwd, sizeof(cwd));
+	QString pp = QString(cwd) + "/../lib/plugins";
+    	qputenv("QT_PLUGIN_PATH", pp.toUtf8());
+
         chdir(owd_env);
     }
 
