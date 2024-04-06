@@ -11,10 +11,11 @@ To build phantomjs, run `cmake -DQt5WebKit_DIR=<PATH_TO_QT5WEBKIT_BUILD_DIR> && 
 
 Linux x86-64 AppImage is provided,
 minimal distro requirement is Ubuntu 20 / Debian 10 / CentOS 8.
-minimal glibc requirement is 2.24.
+minimal glibc requirement is 2.28.
+
 Video, audio, 3D and some other features are turned off to keep the build simple, it scores ~350 in https://html5test.opensuse.org .
 
-To reduce startup overhead, you can extract AppImage using `--appiamge-extract` and run:
+To reduce startup overhead, you can extract AppImage using `--appimage-extract` and run:
 ```
 cd squashfs-root/usr
 LD_LIBRARY_PATH=../lib OWD=. bin/phantomjs
