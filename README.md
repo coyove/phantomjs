@@ -5,8 +5,6 @@ PhantomJS ([phantomjs.org](http://phantomjs.org)) is a headless WebKit scriptabl
 **Important**:
 
 This is a fork of PhantomJS, which embeds a more up-to-date Qt5WebKit from https://github.com/movableink/webkit .
-Video, audio, 3D and some other features are turned off to keep the build simple, it scores ~350 in https://html5test.opensuse.org .
-
 Qt5.14 and clang-12 is needed when buliding Qt5WebKit.
 
 To build phantomjs, run `cmake -DQt5WebKit_DIR=<PATH_TO_QT5WEBKIT_BUILD_DIR> && make`.
@@ -14,6 +12,13 @@ To build phantomjs, run `cmake -DQt5WebKit_DIR=<PATH_TO_QT5WEBKIT_BUILD_DIR> && 
 Linux x86-64 AppImage is provided,
 minimal distro requirement is Ubuntu 20 / Debian 10 / CentOS 8.
 minimal glibc requirement is 2.24.
+Video, audio, 3D and some other features are turned off to keep the build simple, it scores ~350 in https://html5test.opensuse.org .
+
+To reduce startup overhead, you can extract AppImage using `--appiamge-extract` and run:
+```
+cd squashfs-root/usr
+LD_LIBRARY_PATH=../lib OWD=. bin/phantomjs
+```
 
 ## Use Cases
 
